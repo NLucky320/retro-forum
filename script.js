@@ -29,9 +29,7 @@ const displayPosts = (postData) => {
     const indicatorColorClass = post.isActive ? "bg-[green]" : "bg-[red]";
     const newPostContainer = document.createElement("div");
     newPostContainer.innerHTML = `
-     <div id="loading-spinner" class="text-center my-40 hidden">
-                        <span class="loading loading-spinner text-primary"></span>
-                    </div>
+    
  <div>
  <div class="flex flex-col lg:flex-row gap-6 bg-[#12132D0D]  rounded-[24px] p-6">
  
@@ -42,7 +40,7 @@ const displayPosts = (postData) => {
                                 <img src="${post.image}" alt="">
                             </div>
                             </div>
-                            <div class="space-y-4">
+                            <div class="space-y-2 lg:space-y-4">
                                 <div class="flex gap-4 text-[#12132DCC] text-[14px] font-medium ">
                                     <div>
                                         <p class=""># ${post.category}</p>
@@ -51,11 +49,11 @@ const displayPosts = (postData) => {
                                         <p>Author : ${post.author.name}</p>
                                     </div>
                                 </div>
-                                <h2 class="text-[#12132D] font-bold text-[20px]">${post.title}
+                                <h2 class="text-[#12132D] font-bold text-[16px] lg:text-[20px]">${post.title}
                                 </h2>
-                                <p class="text-[#12132D99] font-inter">${post.description}</p>
+                                <p class="text-[#12132D99] font-inter text-[14px] lg:text-[16px]"">${post.description}</p>
                                 <hr>
-                                <div class="flex justify-between lg:w-[500px]">
+                                <div class="flex justify-between lg:w-[500px] text-[16px]">
                                     <div class="flex justify-between gap-4">
                                         <div class="flex justify-between gap-2">
                                             <div>
@@ -88,7 +86,7 @@ const displayPosts = (postData) => {
                                 </div>
                             </div>
                         </div>
- </div>
+
 `;
     postContainer.appendChild(newPostContainer);
     // Add click event listener to the button
@@ -208,7 +206,9 @@ function createClickListener(post, newPostContainer) {
     // Update the selected post container
     selectedPostContainer = newPostContainer;
     const clickSection = document.getElementById("click-section");
+
     const clickPostContainer = document.createElement("div");
+
     clickPostContainer.innerHTML = `
     
     <div class="bg-[#FFFFFF] rounded-[16px] flex justify-between p-4 gap-4">
@@ -265,7 +265,7 @@ const displayLatestPost = (latestPostData) => {
                             <p class="text-[#12132D99] ">${
                               latestPost.description
                             }</p>
-                            <div class="flex justify-between">
+                            <div class="flex gap-6">
                                 <div class="max-w-[44px]">
                                     <img class="rounded-full" src="${
                                       latestPost.profile_image
