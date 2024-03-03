@@ -10,7 +10,7 @@
 // PostByQuery: - https://openapi.programming-hero.com/api/retro-forum/posts?category=coding
 
 let count = 0;
-
+const postContainer = document.getElementById("post-container");
 const fetchPosts = async () => {
   const response = await fetch(
     "https://openapi.programming-hero.com/api/retro-forum/posts"
@@ -23,7 +23,6 @@ const fetchPosts = async () => {
 };
 
 const displayPosts = (postData) => {
-  const postContainer = document.getElementById("post-container");
   postContainer.textContent = "";
   postData.forEach((post) => {
     // console.log(post);
@@ -34,7 +33,7 @@ const displayPosts = (postData) => {
                         <span class="loading loading-spinner text-primary"></span>
                     </div>
  <div>
- <div class="flex flex-col lg:flex-row gap-6 bg-[#12132D0D] hover:bg-[#797DFC1A] hover:border-[#797DFC1A]  rounded-[24px] p-6">
+ <div class="flex flex-col lg:flex-row gap-6 bg-[#12132D0D]  rounded-[24px] p-6">
  
                             <div class="indicator ">
                             <span class="indicator-item badge  ${indicatorColorClass}" ></span>
@@ -95,7 +94,10 @@ const displayPosts = (postData) => {
     // Add click event listener to the button
     const addButton = newPostContainer.querySelector(".add-btn");
     if (addButton) {
-      addButton.addEventListener("click", createClickListener(post));
+      addButton.addEventListener(
+        "click",
+        createClickListener(post, newPostContainer)
+      );
     }
   });
 };
@@ -185,10 +187,26 @@ const fetchSearchPosts = async (categoryName) => {
 // };
 
 // Function to handle the click event, capturing the post data
-function createClickListener(post) {
+function createClickListener(post, newPostContainer) {
+  let selectedPostContainer = null;
+
   return function () {
     count++;
     document.getElementById("count").innerText = count;
+
+    // Remove background color from the previously selected post container
+    if (selectedPostContainer) {
+      selectedPostContainer.style.backgroundColor = "";
+    }
+
+    // Add code to change the background color here
+    newPostContainer.style.backgroundColor = "#797DFC1A";
+    newPostContainer.style.borderColor = "#797DFC";
+    newPostContainer.style.borderRadius = "24px";
+    newPostContainer.style.borderWidth = "1px";
+
+    // Update the selected post container
+    selectedPostContainer = newPostContainer;
     const clickSection = document.getElementById("click-section");
     const clickPostContainer = document.createElement("div");
     clickPostContainer.innerHTML = `
@@ -273,6 +291,7 @@ const displayLatestPost = (latestPostData) => {
 //handle search button
 
 const handleSearch = () => {
+  postContainer.textContent = "";
   toggleLoadingSpinner(true);
   const searchField = document.getElementById("search-field");
   const categoryName = searchField.value;
