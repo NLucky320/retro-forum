@@ -214,9 +214,9 @@ function createClickListener(post, newPostContainer) {
 
     clickPostContainer.innerHTML = `
     
-    <div class="bg-[#FFFFFF] rounded-[16px] flex justify-between p-4 gap-4">
-        <h5 class="font-semibold text-[#12132D] lg:w-[200px] ">${post.title}</h5>
-        <div class="flex text-[#12132D99] items-center text-center gap-2">
+    <div class="bg-[#FFFFFF] rounded-[16px] flex justify-between p-4 gap-2 w-full">
+        <h5 class="font-semibold text-[#12132D]">${post.title}</h5>
+        <div class="flex text-[#12132D99] items-center text-center gap-2 w-[120px]">
             <div class="font-bold">
                 <img class="text-[24px]" src="./icon/tabler-icon-eye.svg" alt="">
             </div>
@@ -246,7 +246,7 @@ const displayLatestPost = (latestPostData) => {
     );
     const newLatestPostContainer = document.createElement("div");
     newLatestPostContainer.innerHTML = `
-      <div class="card lg:max-w-[380px] md:h-[560px] bg-base-100 shadow-xl border-[#12132D26]">
+      <div class="card lg:max-w-[380px] h-full bg-base-100 shadow-xl border-[#12132D26]">
                         <div class="px-6 pt-8">
                             <img class="rounded-xl" src="${
                               latestPost.cover_image
