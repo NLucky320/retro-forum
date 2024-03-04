@@ -12,14 +12,17 @@
 let count = 0;
 const postContainer = document.getElementById("post-container");
 const fetchPosts = async () => {
+  toggleLoadingSpinn(true);
   const response = await fetch(
     "https://openapi.programming-hero.com/api/retro-forum/posts"
   );
   const data = await response.json();
   const postData = data.posts;
   console.log(postData);
-  displayPosts(postData);
-  // toggleLoadingSpinner(false, 2000);
+  setTimeout(() => {
+    displayPosts(postData);
+    toggleLoadingSpinn(false); // Hide spinner
+  }, 2000);
 };
 
 const displayPosts = (postData) => {
@@ -305,6 +308,18 @@ const handleSearch = () => {
 
 const toggleLoadingSpinner = (isLoading) => {
   const loadingSpinner = document.getElementById("loading-spinner");
+  if (isLoading) {
+    loadingSpinner.classList.remove("hidden");
+    // Set a timeout to hide the loading spinner after 2 seconds
+    setTimeout(() => {
+      loadingSpinner.classList.add("hidden");
+    }, 2000);
+  } else {
+    loadingSpinner.classList.add("hidden");
+  }
+};
+const toggleLoadingSpinn = (isLoading) => {
+  const loadingSpinner = document.getElementById("loading-spinn");
   if (isLoading) {
     loadingSpinner.classList.remove("hidden");
     // Set a timeout to hide the loading spinner after 2 seconds
