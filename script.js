@@ -246,7 +246,7 @@ const displayLatestPost = (latestPostData) => {
     );
     const newLatestPostContainer = document.createElement("div");
     newLatestPostContainer.innerHTML = `
-      <div class="card lg:max-w-[380px] h-full bg-base-100 shadow-xl border-[#12132D26]">
+      <div class="card lg:max-w-[380px] h-full bg-base-100 shadow-xl border border-[#12132D26] rounded-[24px]">
                         <div class="px-6 pt-8">
                             <img class="rounded-xl" src="${
                               latestPost.cover_image
